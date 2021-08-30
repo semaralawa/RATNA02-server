@@ -27,8 +27,23 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # load database
     import db
     db.init_app(app)
+    # if there's no database, create one
+    if(os.path.exists(os.path.join(app.instance_path, 'flaskr.sqlite')) == False):
+        with app.app_context():
+            db.init_db()
+            # add preset movement data
+            dbHandler = db.get_db()
+            preset_movement = ('upleft', 'up', 'upright', 'turnleft', 'left',
+                               'right', 'turnright', 'downleft', 'down', 'downright')
+            for move in preset_movement:
+                dbHandler.execute(
+                    'INSERT INTO movement (move_name, act) VALUES (?, ?)',
+                    (move, 0)
+                )
+            dbHandler.commit()
 
     import auth
     app.register_blueprint(auth.bp)
@@ -36,7 +51,7 @@ def create_app(test_config=None):
     import home
     app.register_blueprint(home.bp)
 
-    # a simple page that says hello
+    # redirect page to login page
     @app.route('/')
     def hello():
         return redirect(url_for('auth.login'))

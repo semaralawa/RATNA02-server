@@ -5,80 +5,47 @@
     <meta charset="utf-8">
     <title>Ratna controller</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
-    <!-- Unduh Font Awesome dibawah -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header>
         <h1>RATNA02</h1>
     </header>
-    <div class="controller">
-
-    </div>
-    <!-- <div class="lesson-wrapper">
-        <div class="container">
-            <div class="heading">
-                <h2>Cari tau dari mana anda mau memulai!</h2>
-            </div>
-            <div class="lessons">
-                <div class="lesson">
-                    <div class="lesson-icon">
-                        <img src="https://prog-8.com/images/html/advanced/html.png">
-                        <p>HTML & CSS</p>
-                    </div>
-                    <p class="txt-contents">
-                        Dua bahasa yang digunakan untuk membangun struktur dan design tambilan website anda.
-                    </p>
-                </div>
-                <div class="lesson">
-                    <div class="lesson-icon">
-                        <img src="https://prog-8.com/images/html/advanced/jQuery.png">
-                        <p>JQuerry</p>
-                    </div>
-                    <p class="txt-contents">
-                        JavaScript Library yang cepat, kaya akan fitur dan mudah digunakan untuk menangani animasi dan
-                        permintaan Ajax.
-                    </p>
-                </div>
-                <div class="lesson">
-                    <div class="lesson-icon">
-                        <img src="https://prog-8.com/images/html/advanced/ruby.png">
-                        <p>Ruby</p>
-                    </div>
-                    <p class="txt-contents">
-                        Bahasa dinamis, serba guna yang sederhana dan produktif. Ruby sering digunakan untuk membuat
-                        aplikasi web yang responsive.
-                    </p>
-                </div>
-                <div class="lesson">
-                    <div class="lesson-icon">
-                        <img src="https://prog-8.com/images/html/advanced/php.png">
-                        <p>PHP</p>
-                    </div>
-                    <p class="txt-contents">
-                        Bahasa scripting "open-source" yang dapat disematkan ke dalam HTML, dan cocok untuk pengembangan
-                        web.
-                    </p>
-                </div>
-            </div>
+    <div class="container">
+        <div class='camera'>
+            <h3>CAMERA</h3>
+            <img src="{{ url_for('static', filename='icon/noPict.png') }}">
+        </div>
+        <div class="controller">
+            <h3>CONTROLLER</h3>
+            <form method="post">
+                <input type="image" name="upleft-btn" class="btn corner"
+                    src="{{ url_for('static', filename='icon/upleft-btn.svg') }}" />
+                <input type="image" name="up-btn" class="btn side"
+                    src="{{ url_for('static', filename='icon/up-btn.svg') }}" />
+                <input type="image" name="upright-btn" class="btn corner"
+                    src="{{ url_for('static', filename='icon/upright-btn.svg') }}" />
+                <p></p>
+                <input type="image" name="turnleft-btn" class="btn side"
+                    src="{{ url_for('static', filename='icon/turnleft-btn.svg') }}" />
+                <input type="image" name="left-btn" class="btn side"
+                    src="{{ url_for('static', filename='icon/left-btn.svg') }}" />
+                <input type="image" name="stop-btn" class="btn corner"
+                    src="{{ url_for('static', filename='icon/stop-btn.svg') }}" />
+                <input type="image" name="right-btn" class="btn side"
+                    src="{{ url_for('static', filename='icon/right-btn.svg') }}" />
+                <input type="image" name="turnright-btn" class="btn side"
+                    src="{{ url_for('static', filename='icon/turnright-btn.svg') }}" />
+                <p></p>
+                <input type="image" name="downleft-btn" class="btn corner"
+                    src="{{ url_for('static', filename='icon/downleft-btn.svg') }}" />
+                <input type="image" name="down-btn" class="btn side"
+                    src="{{ url_for('static', filename='icon/down-btn.svg') }}" />
+                <input type="image" name="downright-btn" class="btn corner"
+                    src="{{ url_for('static', filename='icon/downright-btn.svg') }}" />
+            </form>
         </div>
     </div>
-    <div class="message-wrapper">
-        <div class="container">
-            <div class="heading">
-                <h2>Apakah anda siap untuk menjadi programer yang handal?</h2>
-                <h3>Ayo belajar coding, ayo belajar menjadi lebih kreatif!</h3>
-            </div>
-            <span class="btn message">Mulai belajar</span>
-        </div>
-    </div>
-    <footer>
-        <div class="container">
-            <img src="https://prog-8.com/images/html/advanced/footer_logo.png">
-            <p>Learn to code, learn to bo creative</p>
-        </div>
-    </footer> -->
 </body>
 
 </html>

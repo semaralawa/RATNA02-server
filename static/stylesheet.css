@@ -1,12 +1,14 @@
 @font-face { font-family: aquire; src: url('Aquire-BW0ox.otf'); } 
 
 html{
-  background: #eee;
+  background-image: url("bg-home.png");
+  background-size: auto;
   /* padding: 1rem; */
 }
 
 body {
   font-family: "Lucida Grande";
+  padding-left: 15%;
 }
 
 li {
@@ -16,6 +18,8 @@ li {
 a {
   text-decoration: none;
 }
+
+/* for login */
 
 .ratna-logo h1{
   font-family: "aquire";
@@ -38,180 +42,88 @@ a {
   font-size: 14px;
 }
 
+/* FOR HOME */
+header{
+  padding-left: 100px;
+  text-align: center;
+}
+
 header h1{
   font-family: "aquire";
   font-size: 50px;
   padding-top: 100px;
-  text-align:center;
-}
-
-/* Ketik code Anda dibawah */
-/* header{
-  height: 65px;
-  width: 100%;
-  background-color: rgba(34, 49, 52, 0.9);
-  position:fixed;
-  top:0;
-  z-index:10;
 }
 
 .container{
-  width:1170px;
-  margin:0 auto;
+  width: 75%;
+  margin-left:15%;
+  display: inline-block;
+  text-align: center;
 }
 
-.header-left{
-  float:left;
+.camera{
+  float: left;
+  text-align: center;
 }
 
-.logo{
-  width:124px;
-  margin-top:20px;
+.camera h3{
+  font-family: "aquire";
+  padding-bottom: 10px;
 }
 
-.header-right{
-  float:right;
-  background-color:rgba(255,255,255,0.3);
-  transition:all 0.5s;
+.camera img{
+  width: 500px;
+  height: 281px;
 }
 
-.header-right:hover{
-  background-color:rgba(255,255,255,0.5);
+.controller h3{
+  font-family: "aquire";
+  padding-bottom: 10px;
 }
 
-.header-right a{
-  line-height:65px;
-  padding:0 25px;
-  color:white;
-  display:block;
+.controller{
+  float: right;
+  text-align: center;
 }
 
-.top-wrapper{
-  padding:180px 0px 100px 0px;
-  background-image:url(https://prog-8.com/images/html/advanced/top_en.png);
-  background-size:cover;
-  color:white;
-  text-align:center;
-}
-
-.top-wrapper h1{
-  opacity:0.7;
-  font-size:45px;
-  letter-spacing:5px;
-  margin-bottom:10px;
-}
-
-.top-wrapper p{
-  margin-bottom:3px;
-  opacity:0.7;
-}
-
-.btn-wrapper{
-  margin:20px 0px;
-}
-
-.btn-wrapper p{
-  margin:10px 0px;
+.controller p{
+  font-size: 2px;
 }
 
 .btn{
-  padding: 12px 24px;
-  color:white;
-  display:inline-block;
+  padding: 5px;
+  /* color:rgb(253, 204, 70); */
   opacity:0.8;
   border-radius:4px;
 }
 
 .btn:hover{
   opacity:1.0;
+  cursor: pointer;
 }
 
-.signup{
-  background-color:#239b76;
+.side {
+  height: 37px;
+  width: 37px;
+  padding: 3px 5px;
 }
 
-.facebook{
-  background-color:#3b5998;
-  margin-right:10px;
+.side:active{
+  height: 33px;
+  width: 33px;
+  opacity:1.0;
+  /* color:rgb(128, 128, 128); */
+  cursor: pointer;
+}
+.corner{
+  height: 32px;
+  width: 32px;
 }
 
-.twitter{
-  background-color:#55acee;
+.corner:active{
+  height: 30px;
+  width: 30px;
+  opacity:1.0;
+  /* color:rgb(128, 128, 128); */
+  cursor: pointer;
 }
-
-.lesson-wrapper{
-  height:500px;
-  padding-bottom:80px;
-  background-color:#f7f7f7;
-  text-align:center;
-}
-
-.heading {
-  padding-top:60px;
-  padding-bottom:30px;
-  color:#5f5d60;
-}
-
-.heading h2{
-  font-weight:normal;
-}
-
-.heading h3{
-  font-weight:normal;
-}
-
-.lesson{
-  float:left;
-  width: 25%;
-}
-
-.lesson-icon{
-  position:relative;
-}
-
-.lesson-icon p{
-  position:absolute;
-  top:90px;
-  width:100%;
-  color:white;
-}
-
-.txt-contents{
-  width:80%;
-  display:inline-block;
-  margin-top:20px;
-  font-size:15px;
-  color:#b3aeb5;
-}
-
-.message-wrapper{
-  border-bottom: 1px solid #eee;
-  padding-bottom:80px;
-  text-align:center;
-}
-
-.message{
-  padding:15px 40px;
-  background-color:#5dca88;
-  cursor:pointer;
-  box-shadow:0 7px #1a7940;
-}
-
-.message:active{
-  position:relative;
-  top:7px;
-  box-shadow:none;
-}
-
-footer{
-  padding-top:30px;
-}
-
-footer img{
-  width:124px;
-}
-
-footer p{
-  color:#b3aeb5;
-  font-size:12px;
-} */

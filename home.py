@@ -16,6 +16,24 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-@bp.route('/')
+@bp.route('/', methods=('GET', 'POST'))
 def home():
+    if request.method == 'POST':
+        # get input button
+        input = list(request.form.to_dict().keys())
+        button, _ = input[0].split('-')
+        print(button + ' pressed')
+        # update database
+        dbHandler = get_db()
+        if (button == 'stop'):
+            dbHandler.execute(
+                'UPDATE movement SET act = 0'
+            )
+        else:
+            dbHandler.execute(
+                'UPDATE movement SET act = ? WHERE move_name = ?',
+                (1, button)
+            )
+        dbHandler.commit()
+
     return render_template('home.html')
