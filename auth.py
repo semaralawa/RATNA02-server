@@ -32,6 +32,7 @@ def login():
 
         if error is None:
             session.clear()
+            session['user_id'] = 'admin'
             return redirect(url_for('home.home'))
 
         flash(error)
@@ -46,12 +47,10 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
-        ).fetchone()
+        g.user = user_id
 
 
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.login'))

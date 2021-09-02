@@ -8,13 +8,16 @@
 </head>
 
 <body>
+    <div class="disconnect">
+        <a href="{{ url_for('auth.logout') }}">Disconnect</a>
+    </div>
     <header>
         <h1>RATNA02</h1>
     </header>
     <div class="container">
         <div class='camera'>
             <h3>CAMERA</h3>
-            <img src="{{ url_for('static', filename='icon/noPict.png') }}">
+            <img src="{{ url_for('home.video_feed') }}">
         </div>
         <div class="controller">
             <h3>CONTROLLER</h3>
