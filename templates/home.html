@@ -9,7 +9,7 @@
 
 <body>
     <div class="disconnect">
-        <a href="{{ url_for('auth.logout') }}">Disconnect</a>
+        <a href="{{ url_for('home.logout') }}">Disconnect</a>
     </div>
     <header>
         <h1>RATNA02</h1>
@@ -22,33 +22,63 @@
         <div class="controller">
             <h3>CONTROLLER</h3>
             <form method="post">
-                <input type="image" name="upleft-btn" class="btn corner"
-                    src="{{ url_for('static', filename='icon/upleft-btn.svg') }}" />
-                <input type="image" name="up-btn" class="btn side"
-                    src="{{ url_for('static', filename='icon/up-btn.svg') }}" />
-                <input type="image" name="upright-btn" class="btn corner"
-                    src="{{ url_for('static', filename='icon/upright-btn.svg') }}" />
+                <button type="button" value="upleft" onclick="button_click(this);">
+                    <img class="btn corner" src="{{ url_for('static', filename='icon/upleft-btn.svg') }}">
+                </button>
+                <button type="button" value="up" onclick="button_click(this);">
+                    <img class="btn side" src="{{ url_for('static', filename='icon/up-btn.svg') }}">
+                </button>
+                <button type="button" value="upright" onclick="button_click(this);">
+                    <img class="btn corner" src="{{ url_for('static', filename='icon/upright-btn.svg') }}">
+                </button>
                 <p></p>
-                <input type="image" name="turnleft-btn" class="btn side"
-                    src="{{ url_for('static', filename='icon/turnleft-btn.svg') }}" />
-                <input type="image" name="left-btn" class="btn side"
-                    src="{{ url_for('static', filename='icon/left-btn.svg') }}" />
-                <input type="image" name="stop-btn" class="btn corner"
-                    src="{{ url_for('static', filename='icon/stop-btn.svg') }}" />
-                <input type="image" name="right-btn" class="btn side"
-                    src="{{ url_for('static', filename='icon/right-btn.svg') }}" />
-                <input type="image" name="turnright-btn" class="btn side"
-                    src="{{ url_for('static', filename='icon/turnright-btn.svg') }}" />
+                <button type="button" value="turnleft" onclick="button_click(this);">
+                    <img class="btn side" src="{{ url_for('static', filename='icon/turnleft-btn.svg') }}">
+                </button>
+                <button type="button" value="left" onclick="button_click(this);">
+                    <img class="btn side" src="{{ url_for('static', filename='icon/left-btn.svg') }}">
+                </button>
+                <button type="button" value="stop" onclick="button_click(this);">
+                    <img class="btn corner" src="{{ url_for('static', filename='icon/stop-btn.svg') }}">
+                </button>
+                <button type="button" value="right" onclick="button_click(this);">
+                    <img class="btn side" src="{{ url_for('static', filename='icon/right-btn.svg') }}">
+                </button>
+                <button type="button" value="turnright" onclick="button_click(this);">
+                    <img class="btn side" src="{{ url_for('static', filename='icon/turnright-btn.svg') }}">
+                </button>
                 <p></p>
-                <input type="image" name="downleft-btn" class="btn corner"
-                    src="{{ url_for('static', filename='icon/downleft-btn.svg') }}" />
-                <input type="image" name="down-btn" class="btn side"
-                    src="{{ url_for('static', filename='icon/down-btn.svg') }}" />
-                <input type="image" name="downright-btn" class="btn corner"
-                    src="{{ url_for('static', filename='icon/downright-btn.svg') }}" />
+                <button type="button" value="downleft" onclick="button_click(this);">
+                    <img class="btn corner" src="{{ url_for('static', filename='icon/downleft-btn.svg') }}">
+                </button>
+                <button type="button" value="down" onclick="button_click(this);">
+                    <img class="btn side" src="{{ url_for('static', filename='icon/down-btn.svg') }}">
+                </button>
+                <button type="button" value="downright" onclick="button_click(this);">
+                    <img class="btn corner" src="{{ url_for('static', filename='icon/downright-btn.svg') }}">
+                </button>
             </form>
+            <div id="result"></div>
         </div>
     </div>
+    <div id="result"></div>
+    <script type="text/javascript">
+        function button_click(element) {
+            var req = new XMLHttpRequest();
+            var result = document.getElementById('result');
+            req.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    result.innerHTML = this.responseText;
+                } else {
+                    result.innerHTML = "loading...";
+                }
+            }
+
+            req.open('POST', '/home/', true);
+            req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+            req.send("value=" + element.value);
+        }
+    </script>
 </body>
 
 </html>

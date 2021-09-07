@@ -1,15 +1,12 @@
+from db import get_db
 import functools
+import cv2
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Response
 )
 
-import cv2
-
-from db import get_db
-
 bp = Blueprint('home', __name__, url_prefix='/home')
-camera = cv2.VideoCapture(0)
 
 
 def login_required(view):
@@ -31,10 +28,14 @@ def query_db(query, args=(), one=False):
 
 
 def gen_frames():  # generate frame by frame from camera
+    camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    camera.set(3, 1280)
+    camera.set(4, 720)
     while True:
         # Capture frame-by-frame
         success, frame = camera.read()  # read the camera frame
         if not success:
+            print("camera open failed, repeating.....")
             break
         else:
             ret, buffer = cv2.imencode('.jpg', frame)
@@ -54,8 +55,7 @@ def video_feed():
 def home():
     if request.method == 'POST':
         # get input button
-        input = list(request.form.to_dict().keys())
-        button, _ = input[0].split('-')
+        button = request.form["value"]
         print(button + ' pressed')
         # update database
         dbHandler = get_db()
@@ -70,6 +70,7 @@ def home():
                 (1, button)
             )
             dbHandler.commit()
+        return button + ' pressed'
 
     return render_template('home.html')
 
@@ -82,3 +83,9 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = user_id
+
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('auth.login'))

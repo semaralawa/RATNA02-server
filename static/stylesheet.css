@@ -97,7 +97,8 @@ header h1{
 }
 
 .controller{
-  float: right;
+  float: left;
+  margin-left: 50px;
   text-align: center;
 }
 
@@ -106,7 +107,9 @@ header h1{
 }
 
 .btn{
-  padding: 5px;
+  height: 32px;
+  width: 32px;
+  padding: 2px;
   /* color:rgb(253, 204, 70); */
   opacity:0.8;
   border-radius:4px;
@@ -117,6 +120,11 @@ header h1{
   cursor: pointer;
 }
 
+button{
+  background: none;
+  border: none;
+}
+/* 
 .side {
   height: 37px;
   width: 37px;
@@ -127,7 +135,7 @@ header h1{
   height: 33px;
   width: 33px;
   opacity:1.0;
-  /* color:rgb(128, 128, 128); */
+  color:rgb(128, 128, 128);
   cursor: pointer;
 }
 .corner{
@@ -139,6 +147,6 @@ header h1{
   height: 30px;
   width: 30px;
   opacity:1.0;
-  /* color:rgb(128, 128, 128); */
+  color:rgb(128, 128, 128);
   cursor: pointer;
-}
+} */
