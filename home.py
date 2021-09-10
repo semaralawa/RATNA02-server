@@ -8,6 +8,8 @@ from flask import (
 
 bp = Blueprint('home', __name__, url_prefix='/home')
 
+button = "stop"
+
 
 def login_required(view):
     @functools.wraps(view)
@@ -27,8 +29,13 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
+def movement():
+    global button
+    print(button + ' pressed')
+
+
 def gen_frames():  # generate frame by frame from camera
-    camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    camera = cv2.VideoCapture(0)
     camera.set(3, 1280)
     camera.set(4, 720)
     while True:
@@ -38,6 +45,9 @@ def gen_frames():  # generate frame by frame from camera
             print("camera open failed, repeating.....")
             break
         else:
+            # execute movement function
+            movement()
+            # send image to web
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
@@ -46,6 +56,7 @@ def gen_frames():  # generate frame by frame from camera
 
 @bp.route('/video_feed')
 def video_feed():
+
     # Video streaming route. Put this in the src attribute of an img tag
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -54,22 +65,10 @@ def video_feed():
 @login_required
 def home():
     if request.method == 'POST':
+        # force the module to find global scope variable
+        global button
         # get input button
         button = request.form["value"]
-        print(button + ' pressed')
-        # update database
-        dbHandler = get_db()
-        # reset it first
-        dbHandler.execute(
-            'UPDATE movement SET act = 0'
-        )
-        dbHandler.commit()
-        if (button != 'stop'):
-            dbHandler.execute(
-                'UPDATE movement SET act = ? WHERE move_name = ?',
-                (1, button)
-            )
-            dbHandler.commit()
         return button + ' pressed'
 
     return render_template('home.html')
