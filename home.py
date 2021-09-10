@@ -1,15 +1,21 @@
 from db import get_db
 import functools
 import cv2
+import serial
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Response
 )
 
+serialPort = serial.Serial(port = "COM7", baudrate=115200)
+serialPort.flushInput()
+
 bp = Blueprint('home', __name__, url_prefix='/home')
 
 button = "stop"
-
+IndividualMotor = [0, 0, 0, 0]
+SendSlaveMotor = ""
+SpeedMotor = 50
 
 def login_required(view):
     @functools.wraps(view)
@@ -32,6 +38,32 @@ def query_db(query, args=(), one=False):
 def movement():
     global button
     print(button + ' pressed')
+
+    if button == 'upleft':
+        IndividualMotor = [0, SpeedMotor, -SpeedMotor, 0]
+    elif button == "up":
+        IndividualMotor = [SpeedMotor, SpeedMotor, -SpeedMotor, -SpeedMotor]
+    elif button == "upright":
+        IndividualMotor = [SpeedMotor, 0, 0, -SpeedMotor]
+    elif button == "turnleft":
+        IndividualMotor = [SpeedMotor, SpeedMotor, SpeedMotor, SpeedMotor]
+    elif button == "left":
+        IndividualMotor = [-SpeedMotor, SpeedMotor, -SpeedMotor, SpeedMotor]
+    elif button == "right":
+        IndividualMotor = [SpeedMotor, -SpeedMotor, SpeedMotor, -SpeedMotor]
+    elif button == "turnrigt":
+        IndividualMotor = [-SpeedMotor, -SpeedMotor, -SpeedMotor, -SpeedMotor]
+    elif button == "downleft":
+        IndividualMotor = [-SpeedMotor, 0, 0, SpeedMotor]
+    elif button == "down":
+        IndividualMotor = [-SpeedMotor, -SpeedMotor, SpeedMotor, SpeedMotor]
+    elif button == "downright":
+        IndividualMotor = [0, -SpeedMotor, SpeedMotor, 0]
+    else:
+        IndividualMotor = [0, 0, 0, 0]
+    
+    SendSlaveMotor = f"*{IndividualMotor[0]},{IndividualMotor[1]},{IndividualMotor[2]},{IndividualMotor[3]}#"
+    serialPort.write(SendSlaveMotor)
 
 
 def gen_frames():  # generate frame by frame from camera
